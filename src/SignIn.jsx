@@ -39,6 +39,7 @@ export const SignIn = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(userDel),
+          mode:'cors'
         });
         let res = await register.json();
 

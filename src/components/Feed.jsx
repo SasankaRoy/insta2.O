@@ -30,7 +30,7 @@ export const Feed = ({ Post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await fetch(`https://instagramserver-2.herokuapp.com/api/user/${Post.userId}`);
+      const data = await fetch(`https://instagramserver-2.herokuapp.com/api/user/${Post.userId}`,{mode:'cors'});
       const response = await data.json();
       setUser(response);
     };
@@ -46,6 +46,7 @@ export const Feed = ({ Post }) => {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user._id }),
+        mode:'cors'
       });
       let data = await Like.json();
       console.log(data);

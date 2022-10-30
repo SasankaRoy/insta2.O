@@ -30,6 +30,7 @@ export const UserProfile = () => {
   const deleteAccount = async (ID) => {
     const res = await axios.put(`https://instagramserver-2.herokuapp.com/api/user/${user._id}/delete`, {
       userid: user._id,
+      
     });
     if (res.status === 200) {
       navigate("/auth/login");

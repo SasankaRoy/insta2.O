@@ -55,6 +55,7 @@ export const LogIn = () => {
           email: emailRef.current.value,
           password: passwordRef.current.value,
         }),
+        mode:'cors'
       });
       let response = await loginUrl.json();
       if (

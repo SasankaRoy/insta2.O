@@ -23,7 +23,7 @@ export const Profiles = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${username}/posts`);
+      const data = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${username}/posts`,{mode:'cors'});
       const response = await data.json();
       if (data.status === 200) {
         setUserData(response.userData);

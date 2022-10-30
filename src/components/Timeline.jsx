@@ -27,6 +27,7 @@ export const Timeline = ({ data, userdata }) => {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user._id }),
+        mode:'cors'
       });
       let data = await Like.json();
       console.log(data);
