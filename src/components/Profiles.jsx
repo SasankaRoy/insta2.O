@@ -23,7 +23,7 @@ export const Profiles = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await fetch(`/post/${username}/posts`);
+      const data = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${username}/posts`);
       const response = await data.json();
       if (data.status === 200) {
         setUserData(response.userData);
@@ -38,18 +38,18 @@ export const Profiles = () => {
   }, [username, user]);
 
   const followUser = async () => {
-    let follow = await axios.put(`/user/${userData._id}/follow`, {
+    let follow = await axios.put(`https://instagramserver-2.herokuapp.com/api/user/${userData._id}/follow`, {
       userId: user._id,
     });
   };
   const unfollow = async () => {
-    let follow = await axios.put(`/user/${userData._id}/unfollow`, {
+    let follow = await axios.put(`https://instagramserver-2.herokuapp.com/api/user/${userData._id}/unfollow`, {
       userId: user._id,
     });
   };
 
   const startConversation = async (receiverId) => {
-    let result = await axios.post("/conversation", {
+    let result = await axios.post("https://instagramserver-2.herokuapp.com/api/conversation", {
       senderId: user._id,
       receiverId,
     });

@@ -43,7 +43,7 @@ export const Chat = () => {
   useEffect(() => {
     const getSMS = async () => {
       try {
-        const result = await axios.get(`/message/${conversationId}`);
+        const result = await axios.get(`https://instagramserver-2.herokuapp.com/api/message/${conversationId}`);
         setSMS(result.data.messages);
       } catch (error) {
         console.log(error);

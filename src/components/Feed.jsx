@@ -30,7 +30,7 @@ export const Feed = ({ Post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await fetch(`/user/${Post.userId}`);
+      const data = await fetch(`https://instagramserver-2.herokuapp.com/api/user/${Post.userId}`);
       const response = await data.json();
       setUser(response);
     };
@@ -42,7 +42,7 @@ export const Feed = ({ Post }) => {
 
   const likeAndUnlike = async (PostId) => {
     try {
-      let Like = await fetch(`/post/${PostId}/like`, {
+      let Like = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/like`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user._id }),
@@ -59,7 +59,7 @@ export const Feed = ({ Post }) => {
   const sendComment = async (PostId) => {
     try {
       let comment = coment.current.value;
-      let res = await axios.put(`/post/${PostId}/comment`, {
+      let res = await axios.put(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/comment`, {
         userName: user?.userName,
         comment,
       });
@@ -71,7 +71,7 @@ export const Feed = ({ Post }) => {
   };
 
   const deletePost = async (postId) => {
-    const res = await axios.put(`/post/${postId}/deletepost`, {
+    const res = await axios.put(`https://instagramserver-2.herokuapp.com/api/post/${postId}/deletepost`, {
       userId: user._id,
     });
     if (res.status === 404) {

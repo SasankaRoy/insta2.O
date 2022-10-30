@@ -23,7 +23,7 @@ export const Timeline = ({ data, userdata }) => {
   }, [data.likes, user._id]);
   const likeAndUnlike = async (PostId) => {
     try {
-      let Like = await fetch(`/post/${PostId}/like`, {
+      let Like = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/like`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user._id }),
@@ -40,7 +40,7 @@ export const Timeline = ({ data, userdata }) => {
   const sendComment = async (PostId) => {
     try {
       let comment = coment.current.value;
-      let res = await axios.put(`/post/${PostId}/comment`, {
+      let res = await axios.put(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/comment`, {
         userName: user?.userName,
         comment,
       });

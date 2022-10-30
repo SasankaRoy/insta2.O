@@ -15,7 +15,7 @@ export const Friends = ({ friend }) => {
       let friendId = friend.member.find((f) => f !== user._id);
       // console.log(friendId)
       const getAFriend = async () => {
-        let result = await axios.get(`/user/${friendId}`);
+        let result = await axios.get(`https://instagramserver-2.herokuapp.com/api/user/${friendId}`);
         setfrd(result.data);
         // console.log(result.data);
       };

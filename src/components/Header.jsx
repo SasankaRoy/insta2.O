@@ -27,13 +27,13 @@ export const Header = () => {
 
   const handleInt = async (event) => {
     setSearchFriend(event.target.value);
-    let findFriend = await axios.get(`/user/${event.target.value}/user`);
+    let findFriend = await axios.get(`https://instagramserver-2.herokuapp.com/api/user/${event.target.value}/user`);
     setFriend(findFriend.data.friends);
   };
 
 
   const logOut = async () => {
-    let res = await axios.get("/auth/logout");
+    let res = await axios.get("https://instagramserver-2.herokuapp.com/api/auth/logout");
     console.log(res.data);
     if(res.status === 200){
       navigate("/auth/login");

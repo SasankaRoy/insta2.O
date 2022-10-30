@@ -9,7 +9,7 @@ export const MiniProfile = () => {
   const navigate = useNavigate();
 
   const logOut = async () => {
-    let res = await axios.get("/auth/logout");
+    let res = await axios.get("https://instagramserver-2.herokuapp.com/api/auth/logout");
     console.log(res.data);
     if(res.status === 200){
       navigate("/auth/login");

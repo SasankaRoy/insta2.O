@@ -14,7 +14,7 @@ export const LogIn = () => {
     fetchuser();
   }, []);
   const fetchuser = async () => {
-    let response = await axios.post(`/auth/login`);
+    let response = await axios.post(`https://instagramserver-2.herokuapp.com/api/auth/login`);
     console.log(response.data);
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data.findUser });
   };
@@ -46,7 +46,7 @@ export const LogIn = () => {
 
     dispatch({ type: "LOGIN_START" });
     try {
-      const loginUrl = await fetch("/auth/login", {
+      const loginUrl = await fetch("https://instagramserver-2.herokuapp.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

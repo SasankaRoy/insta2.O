@@ -33,7 +33,7 @@ export const SignIn = () => {
         toast.error("password  content at least 4 char");
         return;
       } else {
-        const register = await fetch("/auth/signin", {
+        const register = await fetch("https://instagramserver-2.herokuapp.com/api/auth/signin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

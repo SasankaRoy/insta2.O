@@ -9,7 +9,7 @@ export const Suggestions = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   useEffect(() => {
     const getFriends = async (req, res) => {
-      let friends = await axios.get(`/user/friend/${user._id}/following`);
+      let friends = await axios.get(`https://instagramserver-2.herokuapp.com/api/user/friend/${user._id}/following`);
       setFriends(friends.data);
     };
     getFriends();

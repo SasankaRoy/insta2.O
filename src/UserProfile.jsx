@@ -20,7 +20,7 @@ export const UserProfile = () => {
   const navigate = useNavigate();
 
   const logOut = async () => {
-    let res = await axios.get("/auth/logout");
+    let res = await axios.get("https://instagramserver-2.herokuapp.com/api/auth/logout");
     console.log(res.data);
     if (res.status === 200) {
       navigate("/auth/login");
@@ -28,7 +28,7 @@ export const UserProfile = () => {
     }
   };
   const deleteAccount = async (ID) => {
-    const res = await axios.put(`/user/${user._id}/delete`, {
+    const res = await axios.put(`https://instagramserver-2.herokuapp.com/api/user/${user._id}/delete`, {
       userid: user._id,
     });
     if (res.status === 200) {

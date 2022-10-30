@@ -15,7 +15,7 @@ export const Messages = () => {
   }, [user._id]);
   const getAllConversations = async () => {
     try {
-      let result = await axios.get(`/conversation/${user._id}`);
+      let result = await axios.get(`https://instagramserver-2.herokuapp.com/api/conversation/${user._id}`);
 
       setConversation(result.data.conversation);
     } catch (error) {

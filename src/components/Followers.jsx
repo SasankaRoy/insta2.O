@@ -10,11 +10,11 @@ export const Followers = ({ setShowFollowers, id, following, followers }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   useEffect(() => {
     const getFollower = async () => {
-      let friends = await axios.get(`/user/friend/${id}/follower`);
+      let friends = await axios.get(`https://instagramserver-2.herokuapp.com/api/user/friend/${id}/follower`);
       setFriends(friends.data);
     };
     const getFollowing = async () => {
-      let friends = await axios.get(`/user/friend/${id}/following`);
+      let friends = await axios.get(`https://instagramserver-2.herokuapp.com/api/user/friend/${id}/following`);
       setFriends(friends.data);
     };
     if (followers === "follower") {

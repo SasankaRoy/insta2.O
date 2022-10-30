@@ -46,9 +46,9 @@ export const EditProfile = () => {
   data.append("file", File);
   const uploadProfilePic = async () => {
     setChanging(true);
-    let res = await axios.post("/upload", data);
+    let res = await axios.post("https://instagramserver-2.herokuapp.com/api/upload", data);
 
-    let result = await axios.put(`/user/${user._id}`, {
+    let result = await axios.put(`https://instagramserver-2.herokuapp.com/api/user/${user._id}`, {
       userid: user._id,
       userName: newDel?.userName,
       email: newDel?.email,
