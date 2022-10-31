@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import EmailValidator from "email-validator";
 // import toast from 'react-hot-toast';
 import { toast } from "react-toastify";
+import axios from "axios";
 export const SignIn = () => {
   const [userDel, setUserDel] = useState({
     name: "",
@@ -33,15 +34,19 @@ export const SignIn = () => {
         toast.error("password  content at least 4 char");
         return;
       } else {
-        const register = await fetch("https://instagramserver-2.herokuapp.com/api/auth/signin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userDel),
-          mode:'cors'
-        });
-        let res = await register.json();
+        // const register = await fetch("https://instagramserver-2.herokuapp.com/api/auth/signin", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(userDel),
+        //   mode:'cors'
+        // });
+        const register = await axios.post(
+          `https://instagramserver-2.herokuapp.com/api/auth/signin`,
+          { userDel }
+        );
+        let res = await register.data;
 
         if (register.status === 400) {
           toast.error(res.error);

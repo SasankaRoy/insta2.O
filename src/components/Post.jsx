@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
@@ -12,8 +13,10 @@ export const Post = () => {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     const fetchPost = async () => {
-      const data = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${user._id}/timeline`,{mode:'cors'});
-      let res = await data.json();
+      const data = await axios.get(
+        `https://instagramserver-2.herokuapp.com/api/post/${user._id}/timeline`
+      );
+      let res = await data.data;
       setPost(
         res.sort((post1, post2) => {
           return new Date(post2.createdAt) - new Date(post1.createdAt);
@@ -22,7 +25,7 @@ export const Post = () => {
     };
     fetchPost();
   }, [user._id]);
-  
+
   return (
     <>
       <main
@@ -34,7 +37,13 @@ export const Post = () => {
           {post.map((p, id) => (
             <Feed key={id} Post={p} />
           ))}
-          {!post.length > 0 && <div className="Nopost__div w-full  h-full"><h1 className="text__div w-full h-full flex items-center justify-center p-10 text-center text-6xl">Make friends to see post or post some pictures !!</h1></div>}
+          {!post.length > 0 && (
+            <div className="Nopost__div w-full  h-full">
+              <h1 className="text__div w-full h-full flex items-center justify-center p-10 text-center text-6xl">
+                Make friends to see post or post some pictures !!
+              </h1>
+            </div>
+          )}
         </section>
         <section className="hidden xl:inline-grid  md:col-span-1 ">
           <div className="fixed top-[11rem]">

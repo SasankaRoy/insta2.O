@@ -23,13 +23,14 @@ export const Timeline = ({ data, userdata }) => {
   }, [data.likes, user._id]);
   const likeAndUnlike = async (PostId) => {
     try {
-      let Like = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/like`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: user._id }),
-        mode:'cors'
-      });
-      let data = await Like.json();
+      // let Like = await fetch(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/like`, {
+      //   method: "PUT",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ userId: user._id }),
+      //   mode:'cors'
+      // });
+      let Like = await axios.put(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/like`,{ userId: user._id })
+      let data = await Like.data;
       console.log(data);
       setLike(!islike ? like + 1 : like - 1);
       setIslike(!islike);

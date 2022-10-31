@@ -14,7 +14,9 @@ export const LogIn = () => {
     fetchuser();
   }, []);
   const fetchuser = async () => {
-    let response = await axios.post(`https://instagramserver-2.herokuapp.com/api/auth/login`);
+    let response = await axios.post(
+      `https://instagramserver-2.herokuapp.com/api/auth/login`
+    );
     console.log(response.data);
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data.findUser });
   };
@@ -46,18 +48,25 @@ export const LogIn = () => {
 
     dispatch({ type: "LOGIN_START" });
     try {
-      const loginUrl = await fetch("https://instagramserver-2.herokuapp.com/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      // const loginUrl = await fetch("https://instagramserver-2.herokuapp.com/api/auth/login", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     email: emailRef.current.value,
+      //     password: passwordRef.current.value,
+      //   }),
+      //   mode:'cors'
+      // });
+      const loginUrl = await axios.post(
+        `https://instagramserver-2.herokuapp.com/api/auth/login`,
+        {
           email: emailRef.current.value,
           password: passwordRef.current.value,
-        }),
-        mode:'cors'
-      });
-      let response = await loginUrl.json();
+        }
+      );
+      let response = await loginUrl.data;
       if (
         loginUrl.status === 404 ||
         loginUrl.status === 401 ||
