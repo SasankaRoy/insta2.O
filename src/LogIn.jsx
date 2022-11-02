@@ -15,7 +15,10 @@ export const LogIn = () => {
   }, []);
   const fetchuser = async () => {
     let response = await axios.post(
-      `https://instagramserver-2.herokuapp.com/api/auth/login`
+      `https://instagramserver-2.herokuapp.com/api/auth/login`,
+      {
+        withCredentials: true,
+      }
     );
     console.log(response.data);
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data.findUser });
@@ -64,6 +67,9 @@ export const LogIn = () => {
         {
           email: emailRef.current.value,
           password: passwordRef.current.value,
+        },
+        {
+          withCredentials: true,
         }
       );
       let response = await loginUrl.data;
