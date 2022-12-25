@@ -23,7 +23,7 @@ export const Profiles = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await axios.get(`https://instagramserver-2.herokuapp.com/api/post/${username}/posts`);
+      const data = await axios.get(`/post/${username}/posts`);
       const response = await data.data;
       if (data.status === 200) {
         setUserData(response.userData);
@@ -38,21 +38,24 @@ export const Profiles = () => {
   }, [username, user]);
 
   const followUser = async () => {
-    let follow = await axios.put(`https://instagramserver-2.herokuapp.com/api/user/${userData._id}/follow`, {
+    let follow = await axios.put(`/user/${userData._id}/follow`, {
       userId: user._id,
     });
   };
   const unfollow = async () => {
-    let follow = await axios.put(`https://instagramserver-2.herokuapp.com/api/user/${userData._id}/unfollow`, {
+    let follow = await axios.put(`/user/${userData._id}/unfollow`, {
       userId: user._id,
     });
   };
 
   const startConversation = async (receiverId) => {
-    let result = await axios.post("https://instagramserver-2.herokuapp.com/api/conversation", {
-      senderId: user._id,
-      receiverId,
-    });
+    let result = await axios.post(
+      "https://instagramserver-2.herokuapp.com/api/conversation",
+      {
+        senderId: user._id,
+        receiverId,
+      }
+    );
     if (result.status === 200) {
       navigate("/profile/messages");
     }
@@ -106,19 +109,16 @@ export const Profiles = () => {
                     <span className="font-extralight">
                       {userData?.followers?.length}
                     </span>
+                  </p>{" "}
+                  <p
+                    onClick={() => setShowFollowing(true)}
+                    className="md:text-xl text-sm  bg-gray-200 px-2 py-1 rounded-full font-semibold capitalize cursor-pointer hover:scale-110 transition-all duration-200 ease-out shadow-lg"
+                  >
+                    followings -{" "}
+                    <span className="font-extralight">
+                      {userData?.following?.length}
+                    </span>
                   </p>
-                  
-                    {" "}
-                    <p
-                      onClick={() => setShowFollowing(true)}
-                      className="md:text-xl text-sm  bg-gray-200 px-2 py-1 rounded-full font-semibold capitalize cursor-pointer hover:scale-110 transition-all duration-200 ease-out shadow-lg"
-                    >
-                      followings -{" "}
-                      <span className="font-extralight">
-                        {userData?.following?.length}
-                      </span>
-                    </p>
-                  
                 </div>
               </div>
               <div className="flex items-center space-x-2 ">

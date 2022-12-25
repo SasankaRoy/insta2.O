@@ -13,9 +13,7 @@ export const Post = () => {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     const fetchPost = async () => {
-      const data = await axios.get(
-        `https://instagramserver-2.herokuapp.com/api/post/${user._id}/timeline`
-      );
+      const data = await axios.get(`/post/${user._id}/timeline`);
       let res = await data.data;
       setPost(
         res.sort((post1, post2) => {

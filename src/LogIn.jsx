@@ -14,13 +14,8 @@ export const LogIn = () => {
     fetchuser();
   }, []);
   const fetchuser = async () => {
-    let response = await axios.post(
-      `https://instagramserver-2.herokuapp.com/api/auth/login`,
-      {
-        withCredentials: true,
-      }
-    );
-    console.log(response.data);
+    let response = await axios.post(`/auth/login`);
+
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data.findUser });
   };
 
@@ -63,7 +58,7 @@ export const LogIn = () => {
       //   mode:'cors'
       // });
       const loginUrl = await axios.post(
-        `https://instagramserver-2.herokuapp.com/api/auth/login`,
+        `/auth/login`,
         {
           email: emailRef.current.value,
           password: passwordRef.current.value,

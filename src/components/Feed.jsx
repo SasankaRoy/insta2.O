@@ -30,16 +30,12 @@ export const Feed = ({ Post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await axios.get(
-        `https://instagramserver-2.herokuapp.com/api/user/${Post.userId}`
-      );
+      const data = await axios.get(`/user/${Post.userId}`);
       // const response = await data.json();
       setUser(data.data);
     };
     fetchUser();
   }, [Post.userId]);
-
-  console.log(Post);
 
   const likeAndUnlike = async (PostId) => {
     try {
@@ -49,10 +45,7 @@ export const Feed = ({ Post }) => {
       //   body: JSON.stringify({ userId: user._id }),
       //   mode:'cors'
       // });
-      let Like = await axios.put(
-        `https://instagramserver-2.herokuapp.com/api/post/${PostId}/like`,
-        { userId: user._id }
-      );
+      let Like = await axios.put(`/post/${PostId}/like`, { userId: user._id });
       let data = await Like.data;
       console.log(data);
       setLike(!islike ? like + 1 : like - 1);
@@ -65,13 +58,10 @@ export const Feed = ({ Post }) => {
   const sendComment = async (PostId) => {
     try {
       let comment = coment.current.value;
-      let res = await axios.put(
-        `https://instagramserver-2.herokuapp.com/api/post/${PostId}/comment`,
-        {
-          userName: user?.userName,
-          comment,
-        }
-      );
+      let res = await axios.put(`/post/${PostId}/comment`, {
+        userName: user?.userName,
+        comment,
+      });
       console.log(res.data);
       window.location.reload();
     } catch (error) {
@@ -80,12 +70,9 @@ export const Feed = ({ Post }) => {
   };
 
   const deletePost = async (postId) => {
-    const res = await axios.put(
-      `https://instagramserver-2.herokuapp.com/api/post/${postId}/deletepost`,
-      {
-        userId: user._id,
-      }
-    );
+    const res = await axios.put(`/post/${postId}/deletepost`, {
+      userId: user._id,
+    });
     if (res.status === 404) {
       toast.error(res.data.error);
     }
@@ -224,7 +211,7 @@ export const Feed = ({ Post }) => {
                       />
                     </div>
                     <h1 className="text-lg font-normal px-4 py-2">
-                      {curr?.userName}
+                      {curr?.userName}:-
                       <span className="font-semibold ml-1 text-md">
                         {curr.comment}
                       </span>

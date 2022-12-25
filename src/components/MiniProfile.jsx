@@ -9,9 +9,9 @@ export const MiniProfile = () => {
   const navigate = useNavigate();
 
   const logOut = async () => {
-    let res = await axios.get("https://instagramserver-2.herokuapp.com/api/auth/logout");
+    let res = await axios.get("/api/auth/logout");
     console.log(res.data);
-    if(res.status === 200){
+    if (res.status === 200) {
       navigate("/auth/login");
     }
   };
@@ -36,8 +36,7 @@ export const MiniProfile = () => {
             className="font-normal
            text-sm  text-gray-400"
           >
-          {user?.education}
-           
+            {user?.education}
           </h3>
         </div>
       </Link>

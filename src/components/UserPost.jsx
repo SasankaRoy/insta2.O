@@ -11,7 +11,7 @@ export const UserPost = () => {
   let PF = process.env.REACT_APP_PUBLIC_FOLDER;
   useEffect(() => {
     const getAllPost = async () => {
-      let post = await axios.get(`https://instagramserver-2.herokuapp.com/api/post/${user.userName}/posts`);
+      let post = await axios.get(`/post/${user.userName}/posts`);
       // console.log(post.data);
       setAllPost(post.data.posts);
     };
@@ -42,19 +42,18 @@ export const UserPost = () => {
               </div>
             </div>
             <div className="posts__div mt-3 mx-auto flex flex-wrap justify-center items-center w-full">
-              
-                {allPost.map((cur, id) => (
-                 <div
-                   key={id}
-                   className="AppsOutlinedIcon__div  m-1 cursor-pointer w-[75%]"
-                 >
-                   <img
-                     src={PF + cur.image}
-                     alt="img"
+              {allPost.map((cur, id) => (
+                <div
+                  key={id}
+                  className="AppsOutlinedIcon__div  m-1 cursor-pointer w-[75%]"
+                >
+                  <img
+                    src={PF + cur.image}
+                    alt="img"
                     className="object-cover w-auto h-auto"
-                   />
-                 </div>
-               ))}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </>
@@ -64,6 +63,3 @@ export const UserPost = () => {
     </>
   );
 };
-
-
-

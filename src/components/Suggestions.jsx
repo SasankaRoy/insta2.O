@@ -9,7 +9,7 @@ export const Suggestions = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   useEffect(() => {
     const getFriends = async (req, res) => {
-      let friends = await axios.get(`https://instagramserver-2.herokuapp.com/api/user/friend/${user._id}/following`);
+      let friends = await axios.get(`/user/friend/${user._id}/following`);
       setFriends(friends.data);
     };
     getFriends();
@@ -21,7 +21,6 @@ export const Suggestions = () => {
         <>
           {friends.map((cur, id) => (
             <div key={id} className="mt-2 ml-6 p-1 ">
-             
               <hr className="bg-black" />
 
               <div
@@ -51,8 +50,6 @@ export const Suggestions = () => {
                     </h3>
                   </div>
                 </Link>
-
-               
               </div>
             </div>
           ))}

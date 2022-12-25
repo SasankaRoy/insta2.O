@@ -29,7 +29,7 @@ export const Timeline = ({ data, userdata }) => {
       //   body: JSON.stringify({ userId: user._id }),
       //   mode:'cors'
       // });
-      let Like = await axios.put(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/like`,{ userId: user._id })
+      let Like = await axios.put(`/post/${PostId}/like`, { userId: user._id });
       let data = await Like.data;
       console.log(data);
       setLike(!islike ? like + 1 : like - 1);
@@ -42,7 +42,7 @@ export const Timeline = ({ data, userdata }) => {
   const sendComment = async (PostId) => {
     try {
       let comment = coment.current.value;
-      let res = await axios.put(`https://instagramserver-2.herokuapp.com/api/post/${PostId}/comment`, {
+      let res = await axios.put(`/post/${PostId}/comment`, {
         userName: user?.userName,
         comment,
       });
@@ -83,7 +83,6 @@ export const Timeline = ({ data, userdata }) => {
           src={PF + data.image}
           onClick={() => likeAndUnlike(data._id)}
           className="object-contain w-full cursor-pointer"
-          
           alt="feed__post"
         />
         <div className="w-full description text-lg p-1 cursor-not-allowed">

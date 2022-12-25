@@ -27,15 +27,14 @@ export const Header = () => {
 
   const handleInt = async (event) => {
     setSearchFriend(event.target.value);
-    let findFriend = await axios.get(`https://instagramserver-2.herokuapp.com/api/user/${event.target.value}/user`);
+    let findFriend = await axios.get(`/user/${event.target.value}/user`);
     setFriend(findFriend.data.friends);
   };
 
-
   const logOut = async () => {
-    let res = await axios.get("https://instagramserver-2.herokuapp.com/api/auth/logout");
+    let res = await axios.get("/auth/logout");
     console.log(res.data);
-    if(res.status === 200){
+    if (res.status === 200) {
       navigate("/auth/login");
     }
   };
@@ -180,7 +179,7 @@ export const Header = () => {
                   </div>
                   <Link to="/profile/">
                     <img
-                    src={PF + user.profilePicture}
+                      src={PF + user.profilePicture}
                       // src="https://links.papareact.com/jjm"
                       alt="userProfilePic"
                       onClick={() => setToggle(false)}
@@ -188,7 +187,10 @@ export const Header = () => {
                     />
                   </Link>
                 </div>
-                <div onClick={logOut} className="fixed my-auto cursor-pointer px-2 py-1 bottom-0 flex justify-center items-center  border h-10 w-full ">
+                <div
+                  onClick={logOut}
+                  className="fixed my-auto cursor-pointer px-2 py-1 bottom-0 flex justify-center items-center  border h-10 w-full "
+                >
                   <LogoutOutlinedIcon className="text-blue-500" />
                   <button className="w-full  text-xl capitalize">
                     Log Out

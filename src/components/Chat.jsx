@@ -25,7 +25,7 @@ export const Chat = () => {
   let query = useQuery();
   useEffect(() => {
     // for the socketio connection
-    socket.current = io("https://insta-message-server.herokuapp.com/");
+    socket.current = io("http://localhost:8000");
     socket.current.on("sendMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -43,7 +43,7 @@ export const Chat = () => {
   useEffect(() => {
     const getSMS = async () => {
       try {
-        const result = await axios.get(`https://instagramserver-2.herokuapp.com/api/message/${conversationId}`);
+        const result = await axios.get(`/message/${conversationId}`);
         setSMS(result.data.messages);
       } catch (error) {
         console.log(error);
@@ -123,7 +123,7 @@ export const Chat = () => {
                   >
                     <div className="space-x-2 flex justify-center items-center">
                       <div className="img__div">
-                        <Avatar  />
+                        <Avatar />
                       </div>
                       <div
                         className={

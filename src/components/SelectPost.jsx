@@ -31,13 +31,13 @@ export const SelectPost = ({ Open, setOpen }) => {
     const data = new FormData();
     data.append("file", File);
     try {
-      await axios.post("https://instagramserver-2.herokuapp.com/api/upload", data);
+      await axios.post("/upload", data);
       setloading(true);
     } catch (error) {
       console.log(error);
     }
     try {
-      await axios.post("https://instagramserver-2.herokuapp.com/api/post", userPost);
+      await axios.post("/post", userPost);
       setOpen(false);
       setloading(false);
       window.location.reload();
