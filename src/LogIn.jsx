@@ -14,7 +14,9 @@ export const LogIn = () => {
     fetchuser();
   }, []);
   const fetchuser = async () => {
-    let response = await axios.post(`/auth/login`);
+    let response = await axios.post(
+      `https://instagramserver-2-0.onrender.com/api/auth/login`
+    );
 
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data.findUser });
   };
@@ -58,7 +60,7 @@ export const LogIn = () => {
       //   mode:'cors'
       // });
       const loginUrl = await axios.post(
-        `/auth/login`,
+        `https://instagramserver-2-0.onrender.com/api/auth/login`,
         {
           email: emailRef.current.value,
           password: passwordRef.current.value,

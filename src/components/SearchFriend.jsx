@@ -14,11 +14,17 @@ export const SearchFriend = ({
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const unfollow = async (id) => {
-    let result = await axios.put(`/user/${id}/unfollow`, { userId: user._id });
+    let result = await axios.put(
+      `https://instagramserver-2-0.onrender.com/api/user/${id}/unfollow`,
+      { userId: user._id }
+    );
   };
   const follow = async (id) => {
     console.log("clicked");
-    let result = await axios.put(`/user/${id}/follow`, { userId: user._id });
+    let result = await axios.put(
+      `https://instagramserver-2-0.onrender.com/api/user/${id}/follow`,
+      { userId: user._id }
+    );
   };
 
   console.log(Data);

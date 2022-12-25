@@ -9,10 +9,12 @@ export const MiniProfile = () => {
   const navigate = useNavigate();
 
   const logOut = async () => {
-    let res = await axios.get("/api/auth/logout");
+    let res = await axios.get(
+      "https://instagramserver-2-0.onrender.com/api/api/auth/logout"
+    );
     console.log(res.data);
     if (res.status === 200) {
-      navigate("/auth/login");
+      navigate("https://instagramserver-2-0.onrender.com/api/auth/login");
     }
   };
   return (

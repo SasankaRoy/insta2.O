@@ -23,7 +23,9 @@ export const Profiles = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await axios.get(`/post/${username}/posts`);
+      const data = await axios.get(
+        `https://instagramserver-2-0.onrender.com/api/post/${username}/posts`
+      );
       const response = await data.data;
       if (data.status === 200) {
         setUserData(response.userData);
@@ -38,26 +40,32 @@ export const Profiles = () => {
   }, [username, user]);
 
   const followUser = async () => {
-    let follow = await axios.put(`/user/${userData._id}/follow`, {
-      userId: user._id,
-    });
+    let follow = await axios.put(
+      `https://instagramserver-2-0.onrender.com/api/user/${userData._id}/follow`,
+      {
+        userId: user._id,
+      }
+    );
   };
   const unfollow = async () => {
-    let follow = await axios.put(`/user/${userData._id}/unfollow`, {
-      userId: user._id,
-    });
+    let follow = await axios.put(
+      `https://instagramserver-2-0.onrender.com/api/user/${userData._id}/unfollow`,
+      {
+        userId: user._id,
+      }
+    );
   };
 
   const startConversation = async (receiverId) => {
     let result = await axios.post(
-      "https://instagramserver-2.herokuapp.com/api/conversation",
+      "https://instagramserver-2-0.onrender.com/api/conversation",
       {
         senderId: user._id,
         receiverId,
       }
     );
     if (result.status === 200) {
-      navigate("/profile/messages");
+      navigate("https://instagramserver-2-0.onrender.com/api/profile/messages");
     }
   };
 

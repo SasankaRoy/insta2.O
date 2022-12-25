@@ -34,16 +34,8 @@ export const SignIn = () => {
         toast.error("password  content at least 4 char");
         return;
       } else {
-        // const register = await fetch("https://instagramserver-2.herokuapp.com/api/auth/signin", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(userDel),
-        //   mode:'cors'
-        // });
         const register = await axios.post(
-          `https://instagramserver-2.herokuapp.com/api/auth/signin`,
+          `https://instagramserver-2-0.onrender.com/api/auth/signin`,
           { userDel }
         );
         let res = await register.data;

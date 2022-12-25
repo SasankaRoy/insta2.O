@@ -29,7 +29,10 @@ export const Timeline = ({ data, userdata }) => {
       //   body: JSON.stringify({ userId: user._id }),
       //   mode:'cors'
       // });
-      let Like = await axios.put(`/post/${PostId}/like`, { userId: user._id });
+      let Like = await axios.put(
+        `https://instagramserver-2-0.onrender.com/api/post/${PostId}/like`,
+        { userId: user._id }
+      );
       let data = await Like.data;
       console.log(data);
       setLike(!islike ? like + 1 : like - 1);
@@ -42,10 +45,13 @@ export const Timeline = ({ data, userdata }) => {
   const sendComment = async (PostId) => {
     try {
       let comment = coment.current.value;
-      let res = await axios.put(`/post/${PostId}/comment`, {
-        userName: user?.userName,
-        comment,
-      });
+      let res = await axios.put(
+        `https://instagramserver-2-0.onrender.com/api/post/${PostId}/comment`,
+        {
+          userName: user?.userName,
+          comment,
+        }
+      );
       console.log(res.data);
       window.location.reload();
     } catch (error) {

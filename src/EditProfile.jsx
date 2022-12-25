@@ -46,19 +46,25 @@ export const EditProfile = () => {
   data.append("file", File);
   const uploadProfilePic = async () => {
     setChanging(true);
-    let res = await axios.post("/upload", data);
+    let res = await axios.post(
+      "https://instagramserver-2-0.onrender.com/api/upload",
+      data
+    );
 
-    let result = await axios.put(`/user/${user._id}`, {
-      userid: user._id,
-      userName: newDel?.userName,
-      email: newDel?.email,
-      city: newDel?.city,
-      status: newDel?.status,
-      DateOfBirth: newDel?.DateOfBirth,
-      hobbies: newDel?.hobbies,
-      education: newDel?.education,
-      profilePicture: File?.name,
-    });
+    let result = await axios.put(
+      `https://instagramserver-2-0.onrender.com/api/user/${user._id}`,
+      {
+        userid: user._id,
+        userName: newDel?.userName,
+        email: newDel?.email,
+        city: newDel?.city,
+        status: newDel?.status,
+        DateOfBirth: newDel?.DateOfBirth,
+        hobbies: newDel?.hobbies,
+        education: newDel?.education,
+        profilePicture: File?.name,
+      }
+    );
 
     if (result.status === 200) {
       setChanging(false);

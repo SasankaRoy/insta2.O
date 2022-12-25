@@ -11,7 +11,9 @@ export const UserPost = () => {
   let PF = process.env.REACT_APP_PUBLIC_FOLDER;
   useEffect(() => {
     const getAllPost = async () => {
-      let post = await axios.get(`/post/${user.userName}/posts`);
+      let post = await axios.get(
+        `https://instagramserver-2-0.onrender.com/api/post/${user.userName}/posts`
+      );
       // console.log(post.data);
       setAllPost(post.data.posts);
     };

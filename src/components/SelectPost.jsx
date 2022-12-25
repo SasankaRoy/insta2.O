@@ -31,13 +31,19 @@ export const SelectPost = ({ Open, setOpen }) => {
     const data = new FormData();
     data.append("file", File);
     try {
-      await axios.post("/upload", data);
+      await axios.post(
+        "https://instagramserver-2-0.onrender.com/api/upload",
+        data
+      );
       setloading(true);
     } catch (error) {
       console.log(error);
     }
     try {
-      await axios.post("/post", userPost);
+      await axios.post(
+        "https://instagramserver-2-0.onrender.com/api/post",
+        userPost
+      );
       setOpen(false);
       setloading(false);
       window.location.reload();
